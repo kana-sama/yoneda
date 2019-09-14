@@ -9,7 +9,13 @@ defmodule Yoneda.Dialogue do
   end
 
   def message(user_id, message) do
-    GenServer.call(get(user_id), {:message, message})
+    try do
+      GenServer.call(get(user_id), {:message, message})
+    catch
+      :exit, _ ->
+        :timer.sleep(div(@lifetime, 2))
+        message(user_id, message)
+    end
   end
 
   # Priv
