@@ -12,5 +12,7 @@ defmodule Yoneda.Application do
     ]
 
     Supervisor.start_link(children, opts)
+
+    Yoneda.test()
   end
 end

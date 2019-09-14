@@ -1,5 +1,6 @@
 defmodule Yoneda.Dialogue do
   use GenServer
+  require Logger
 
   @lifetime 100
 
@@ -9,6 +10,7 @@ defmodule Yoneda.Dialogue do
   end
 
   def message(user_id, message) do
+    Logger.info("before lookuping pid from registry and call")
     GenServer.call(get(user_id), {:message, message})
   end
 
@@ -71,11 +73,13 @@ defmodule Yoneda.Dialogue do
 
   @impl GenServer
   def handle_info(:timeout, state) do
+    Logger.info("handle_info(:timeout, _)")
     {:stop, :normal, state}
   end
 
   @impl GenServer
   def terminate(:normal, state) do
+    Logger.info("terminate(:normal, _)")
     Yoneda.ClientBot.forward(state.user_id, state.messages)
   end
 
