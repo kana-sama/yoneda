@@ -70,7 +70,7 @@ defmodule Yoneda.Dialogue do
 
   @impl GenServer
   def handle_continue({:replicate_message, replicator, message}, state) do
-    replicated_message_id = Yoneda.ReplicatorBot.send(replicator, message.text)
+    replicated_message_id = Yoneda.ReplicatorBot.replicate(replicator, message.text)
     state = update_in(state.messages, &(&1 ++ [replicated_message_id]))
     {:noreply, state, @lifetime}
   end

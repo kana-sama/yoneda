@@ -3,7 +3,9 @@ defmodule Yoneda.Application do
 
   def start(_type, _args) do
     children = [
-      {Registry, keys: :unique, name: Yoneda.Dialogue.Registry}
+      {Registry, keys: :unique, name: Yoneda.Dialogue.Registry},
+      Yoneda.ReplicatorBot,
+      Yoneda.ClientBot
     ]
 
     opts = [

@@ -19,6 +19,6 @@ defmodule Yoneda.MixProject do
   end
 
   defp deps do
-    []
+    [{:httpoison, "~> 1.5"}, {:poison, "~> 4.0"}]
   end
 end
