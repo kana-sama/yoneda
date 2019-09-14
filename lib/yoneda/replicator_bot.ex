@@ -1,4 +1,5 @@
 defmodule Yoneda.ReplicatorBot do
+  @replicatory Application.fetch_env!(:yoneda, :replicatory)
   @replicators Application.fetch_env!(:yoneda, :replicators)
 
   def request_replicator(ignore) do
@@ -12,6 +13,6 @@ defmodule Yoneda.ReplicatorBot do
   end
 
   def send(bot_id, message) do
-    "#{bot_id} #{message}"
+    "[#{@replicatory}] #{bot_id}: #{message}"
   end
 end

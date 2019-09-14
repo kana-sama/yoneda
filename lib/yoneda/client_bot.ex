@@ -4,15 +4,15 @@ defmodule Yoneda.ClientBot do
   @client Application.fetch_env!(:yoneda, :client)
 
   def error(user_id, text) do
-    Logger.error("#{@client} to #{user_id}: #{text}")
+    Logger.error("[#{@client} -> #{user_id}] #{text}")
   end
 
   def forward(user_id, replicated_messages_ids) do
     messages =
       replicated_messages_ids
-      |> Enum.map(fn message -> "Forward: #{message}" end)
+      |> Enum.map(&"Forward: #{&1}")
       |> Enum.join("\n")
 
-    Logger.info("#{@client} to #{user_id}\n#{messages}")
+    Logger.info("[#{@client} -> #{user_id}] \n#{messages}")
   end
 end
