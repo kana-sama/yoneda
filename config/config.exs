@@ -6,5 +6,7 @@ config :yoneda,
   replicators:
     MapSet.new([
       "<replicator bot token 1>",
-      "<replicator bot token 2>"
+      "<replicator bot token 2>",
+      "<replicator bot token 3>",
+      "<replicator bot token 4>"
     ])

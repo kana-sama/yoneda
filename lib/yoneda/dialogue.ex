@@ -1,5 +1,4 @@
 defmodule Yoneda.Dialogue do
-  require Logger
   use GenServer
 
   @lifetime 100

@@ -1,12 +1,13 @@
 defmodule Yoneda.ReplicatorBot do
-  def request_replicator(ignore) do
-    ignore = MapSet.new(ignore)
-    replicators = Application.fetch_env!(:yoneda, :replicators)
+  @replicators Application.fetch_env!(:yoneda, :replicators)
 
+  def request_replicator(ignore) do
     try do
-      Enum.random(MapSet.difference(replicators, ignore))
+      MapSet.difference(MapSet.new(@replicators), MapSet.new(ignore))
+      |> Enum.random()
     rescue
-      Enum.EmptyError -> :no_replicators
+      Enum.EmptyError ->
+        :no_replicators
     end
   end
 
